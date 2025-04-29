@@ -89,19 +89,20 @@ def submit_solution():
         6: "ch1kn"
     }
 
+    # Already solved correctly?
     if problem_number in users[user_id]['solved_problems']:
         return {"message": "Problem already solved."}, 400
 
-    awarded_score = 0
+    # Check if solution is correct
     correct_answer = correct_answers.get(problem_number)
-
     if correct_answer and solution.strip().lower() == correct_answer:
-        awarded_score = 100
-
-    users[user_id]['score'] += awarded_score
-    users[user_id]['solved_problems'].add(problem_number)
-
-    return {"new_score": users[user_id]['score']}
+        # Correct: award points and mark as solved
+        users[user_id]['score'] += 100
+        users[user_id]['solved_problems'].add(problem_number)
+        return {"message": "Correct! Score updated.", "new_score": users[user_id]['score']}
+    else:
+        # Incorrect: allow retry, no points added
+        return {"message": "Incorrect. Try again."}, 400
 
 @app.route("/api/leaderboard")
 def api_leaderboard():

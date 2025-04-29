@@ -1,6 +1,6 @@
 import requests
-#SERVER_URL = "https://cse198.pythonanywhere.com/"
-SERVER_URL = "http://127.0.0.1:5000/"
+SERVER_URL = "https://cse198.pythonanywhere.com/"
+#SERVER_URL = "http://127.0.0.1:5000/"
 user_id = None
 
 #
@@ -34,4 +34,8 @@ def check_user_id():
     print(f"Your saved user ID is: {user_id}")
 
 create_user('alice')
+submit_solution(1, 'asdf')
+submit_solution(1, 'sad')
 submit_solution(1, 'letmein')
+submit_solution(2, 'shrug')
+submit_solution(2, 'freepass')
